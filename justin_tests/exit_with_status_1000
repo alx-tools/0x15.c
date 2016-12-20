@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Can you exit with status 1000?
+
+command="exit 1000"
+tmp_file="checker_tmp_file_$RANDOM"
+
+# clean up
+stop_shell
+rm -f $tmp_file
+
+# create a pseudo random file
+touch $tmp_file
+# send commands
+echo "$command" | $SHELL
+echo $? > $OUTPUTFILE
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+nmatch=`cat $OUTPUTFILE`
+
+if [ $nmatch -eq 232 ]; then
+	   print_ok
+else
+	   print_ko
+fi
+
+# clean up
+stop_shell
+rm -f $tmp_file
