@@ -3,7 +3,7 @@
 # Can you set alias?
 
 command="alias kappa=b
-echo b"
+echo kappa"
 tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
