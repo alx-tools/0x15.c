@@ -2,8 +2,7 @@
 #
 # Can you correctly ignore impossible path characters?
 
-command="echo $PATH/
-echo $PATH.
+command="echo $PATH.
 echo $PATH,
 echo $PATH_
 echo $PATH%
