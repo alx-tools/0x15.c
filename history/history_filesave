@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# Are you keeping track of history in file?
+
+command="echo WelcomeToTheHolbertonSimpleShellTestSuite
+echo WelcomeToTheHolbertonSimpleShellTestSuite
+echo WelcomeToTheHolbertonSimpleShellTestSuite
+echo WelcomeToTheHolbertonSimpleShellTestSuite
+echo WelcomeToTheHolbertonSimpleShellTestSuite"
+tmp_file="checker_tmp_file_$RANDOM"
+
+# clean up
+stop_shell
+rm -f $tmp_file
+
+# create a pseudo random file
+touch $tmp_file
+# send commands
+rm -f $HOME/.simple_shell_history
+echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+nmatch=`cat $HOME/.simple_shell_history | grep WelcomeToTheHolbertonSimpleShellTestSuite | wc -l`
+
+if [ $nmatch -gt 4 ]; then
+	   print_ok
+else
+	   print_ko
+fi
+
+# clean up
+stop_shell
+rm -f $tmp_file
