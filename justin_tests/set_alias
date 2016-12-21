@@ -2,8 +2,8 @@
 #
 # Can you set alias?
 
-command="alias kappa=b
-echo b"
+command="alias kappa=echo
+kappa b"
 tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
@@ -19,9 +19,9 @@ echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
 $SLEEP $SLEEPSECONDS
 
 # check the result
-nmatch=`cat $OUTPUTFILE | wc -m`
+nmatch=`cat $OUTPUTFILE | grep kappa | wc -l`
 
-if [ $nmatch -eq 2 ]; then
+if [ $nmatch -eq 0 ]; then
 	   print_ok
 else
 	   print_ko
