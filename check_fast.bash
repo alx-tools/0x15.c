@@ -51,7 +51,8 @@ function stop_shell()
 }
 
 # Load configuration
-source config_fast
+source config
+SLEEPSECONDS=.2
 
 # Cleanup
 echo -ne "\033[37m"
