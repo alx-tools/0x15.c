@@ -12,7 +12,7 @@ rm -f $tmp_file
 # create a pseudo random file
 touch $tmp_file
 # send commands
-env > $tmp_file 2> /dev/null &
+$command > $tmp_file 2> /dev/null &
 echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
 
 # wait a little bit
