@@ -2,7 +2,7 @@
 #
 # test simple command usr/bin/printenv
 
-command="usr/bin/printenv"
+command="/usr/bin/printenv"
 tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
