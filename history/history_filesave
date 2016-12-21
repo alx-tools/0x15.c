@@ -16,6 +16,7 @@ rm -f $tmp_file
 # create a pseudo random file
 touch $tmp_file
 # send commands
+rm -f $HOME/.simple_shell_history
 echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
 # wait a little bit
 $SLEEP $SLEEPSECONDS
