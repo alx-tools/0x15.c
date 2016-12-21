@@ -1,10 +1,11 @@
 #!/bin/bash
 #
-# Can you set alias?
+# Can you unset env?
 
-
-command="alias kappa=echo
-kappa b"
+command="setenv Kappa kapppa
+env
+unsetenv Kappa
+env"
 tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
@@ -20,9 +21,9 @@ echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
 $SLEEP $SLEEPSECONDS
 
 # check the result
-nmatch=`cat $OUTPUTFILE | grep kappa | wc -l`
+nmatch=`cat $OUTPUTFILE | grep Kappa=kapppa | wc -l`
 
-if [ $nmatch -eq 0 ]; then
+if [ $nmatch -eq 1 ]; then
 	   print_ok
 else
 	   print_ko
