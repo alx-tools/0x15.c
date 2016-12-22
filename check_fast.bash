@@ -52,6 +52,7 @@ function stop_shell()
 
 # Load configuration
 source config
+SLEEPSECONDS=.2
 
 # Cleanup
 echo -ne "\033[37m"
@@ -65,7 +66,8 @@ echo " "
 echo The tests should produce only OK or KO.
 echo Any extra output is extraneous, and is likely a mistake.
 echo " "
-
+echo This is the FAST version! For when you just need to check a quick update.
+echo " "
 
 # Locates all tests and launch them
 for dir in `ls -d "$TESTDIR"/*/`
