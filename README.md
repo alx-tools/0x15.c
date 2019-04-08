@@ -1,3 +1,6 @@
+# Why Test Driven Development?
+https://medium.freecodecamp.org/test-driven-development-what-it-is-and-what-it-is-not-41fa6bca02a2
+
 # Simple Shell, Checks
 
 There will be no checks released before the deadline. We **strongly** encourage the whole class to work together and create a suite of checks covering both regular tests and edged cases for each task.
