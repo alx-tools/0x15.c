@@ -1,13 +1,16 @@
 #!/usr/bin/expect -f
 
 set timeout -1
-set command "cd .."
-set command2 "pwd"
+
+# this doesn't behave the way I'd like
 # set command [lindex $argv 0]
 # if {[llength $argv] == 0} {
 #  send_user "Usage: scriptname command\n"
 #  exit 1
 # }
+set command "cd .."
+# just using pwd to confirm
+set command2 "pwd"
 
 spawn /bin/sh 
 match_max 100000
