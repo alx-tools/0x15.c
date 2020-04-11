@@ -1,0 +1,14 @@
+#!/usr/bin/env expect
+
+# spawn ssh someuser@somewhere.else
+spawn /bin/sh
+expect -re {\$ $}      ;# regular expression to match your prompt
+
+send -- "ls\r"
+expect -re {^[^\n]+\n(.*)\r\n\$ $}
+set output $expect_out(1,string)
+
+send -- "exit\r"
+expect eof
+
+puts $output
