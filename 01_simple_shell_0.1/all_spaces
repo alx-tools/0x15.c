@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+# check if a medium size command line does not break the shell
+
+command="                                                     "
+tmp_file1="checker_tmp_badf_$RANDOM"
+tmp_file2="checker_tmp_badf_$RANDOM"
+
+
+
+# clean up
+stop_shell
+rm -f $tmp_file
+rm -f $tmp_file1
+rm -f $tmp_file2
+
+# create a pseudo random file
+#touch $tmp_file
+# send commands
+echo "$command" | $SHELL > $tmp_file1 2> $tmp_file1
+echo "$command" | sh > $tmp_file2 2> $tmp_file2
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+#echo $tmp_file1
+#echo $tmp_file2
+# check the result
+nmatch=`cat $tmp_file1 | grep -c $tmp_file2`
+#echo $nmatch
+if cmp -s "$tmp_file1" "$tmp_file2"; then
+    nmatch=1
+else
+    nmatch=0
+fi
+if [ $nmatch -eq 1 ]; then
+	   print_ok
+else
+	   print_ko
+fi
+
+# clean up
+stop_shell
+rm -f $tmp_file
+rm -f $tmp_file1
+rm -f $tmp_file2
