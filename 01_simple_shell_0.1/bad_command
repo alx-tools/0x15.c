@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+# run /bin/ls 2 times with a bad command
+
+command="/bin/ls
+/bin/wrong
+/bin/ls"
+tmp_our_output_file="checker_our_output_$RANDOM"
+tmp_real_output_file="checker_real_output_$RANDOM"
+
+# clean up
+stop_shell
+rm -f $tmp_our_output_file
+rm -f $tmp_real_output_file
+
+# create a pseudo random file
+touch /tmp/$tmp_our_output_file
+touch /tmp/$tmp_real_output_file
+# send commands
+echo "$command" | $SHELL > $tmp_our_output_file 2> $tmp_our_output_file
+echo "$command" | $REALSHELL > $tmp_real_output_file 2> $tmp_real_output_file
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+res=`$CAT $tmp_our_output_file`
+res2=`$CAT $tmp_real_output_file`
+if [ "$res" == "$res2" ]; then
+	   print_ok
+else
+	   print_ko
+fi
+
+# clean up
+stop_shell
+rm -f $tmp_our_output_file
+rm -f $tmp_real_output_file

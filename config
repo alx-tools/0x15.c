@@ -2,10 +2,11 @@
 
 TESTDIR="."
 R=$RANDOM
-OUTPUTFILE="checker_output_$R"
+OUTPUTFILE="checker_output_ours_$R"
 ERROROUTPUTFILE="checker_error_output_$R"
-SHELL="../s_hell"
-#SHELL="/bin/sh"
+#Input your shell's path to set SHELL below
+SHELL="../simple_shell/test"
+REALSHELL="/bin/sh"
 SLEEP=`which sleep`
 SLEEPSECONDS=1
 LTRACE=`which ltrace`
