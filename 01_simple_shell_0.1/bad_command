@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# run /bin/ls 2 times with a bad command
+# run /bin/pwd 2 times with a bad command between
 
 command="/bin/pwd
 /bin/wrong
