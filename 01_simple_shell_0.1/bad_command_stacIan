@@ -1,11 +1,15 @@
 #!/bin/bash
 #
 # check if a medium size command line does not break the shell
+# This will put an incorrect command into sh to compare
+# This will also check your line count. Ask if you have questions.
+# Tahlia and Lance were here
 
-command="jd"
+command="
+jd"
 tmp_file1="checker_tmp_badf_$RANDOM"
 tmp_file2="checker_tmp_badf_$RANDOM"
-
+tmp_directory="newdirectorywithaname"
 
 
 # clean up
@@ -17,8 +21,12 @@ rm -f $tmp_file2
 # create a pseudo random file
 #ouch $tmp_file
 # send commands
-echo "$command" | $SHELL > $tmp_file1 2> $tmp_file1
-echo "$command" | sh > $tmp_file2 2> $tmp_file2
+mkdir $tmp_directory
+cp $PWD/$SHELL $tmp_directory/newtest
+echo "$command" | $PWD/$tmp_directory/newtest > $tmp_file1 2> $tmp_file1
+rm $tmp_directory/newtest
+cp /bin/sh $tmp_directory/newtest
+echo "$command" | $PWD/$tmp_directory/newtest > $tmp_file2 2> $tmp_file2
 
 # wait a little bit
 $SLEEP $SLEEPSECONDS
@@ -43,3 +51,4 @@ stop_shell
 rm -f $tmp_file
 rm -f $tmp_file1
 rm -f $tmp_file2
+rm -rf $tmp_directory
