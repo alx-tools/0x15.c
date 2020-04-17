@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# check that the PATH is checked in the right order
+
+command="ls"
+tmp_our_output_file="/tmp/checker_our_output_$RANDOM"
+tmp_real_output_file="/tmp/checker_real_output_$RANDOM"
+
+# clean up
+stop_shell
+rm -f $tmp_our_output_file
+rm -f $tmp_real_output_file
+
+# create a pseudo random file
+touch $tmp_our_output_file
+touch $tmp_real_output_file
+# empty PATH
+OLDPATH="$PATH"
+PATH="/usr/bin::$PATH"
+# send commands
+$ECHO "$command" | $SHELL 2> $tmp_our_output_file
+$ECHO "$command" | $REALSHELL 2> $tmp_real_output_file
+$ECHO "$command" | $SHELL >> $tmp_our_output_file
+$ECHO "$command" | $REALSHELL >> $tmp_real_output_file
+
+# put PATH back
+PATH="$OLDPATH"
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+res=`cat "$tmp_our_output_file"`
+res2=`cat "$tmp_real_output_file"`
+if [ "$res" == "$res2" ]; then
+    print_ok
+else
+    print_ko
+fi
+
+# clean up
+stop_shell
+rm -f $tmp_our_output_file
+rm -f $tmp_real_output_file

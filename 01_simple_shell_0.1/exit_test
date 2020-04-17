@@ -1,8 +1,9 @@
 #!/bin/bash
 #
-# simple test with ls to check if the shell can find ls in the PATH
+# test that exit works first time after several user inputs
 
-command="ls"
+command = "ls ls ls"
+
 tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
@@ -13,7 +14,7 @@ rm -f $tmp_file
 touch $tmp_file
 # send commands
 echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
-
+echo "exit" | $SHELL > $OUTPUTFILE 2> /dev/null &
 # wait a little bit
 $SLEEP $SLEEPSECONDS
 
@@ -27,4 +28,4 @@ fi
 
 # clean up
 stop_shell
-#rm -f $tmp_file
+rm -f $tmp_file
