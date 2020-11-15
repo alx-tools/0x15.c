@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# test the existance of  README.md
+
+command="/bin/ls"
+tmp_file="checker_tmp_file_$RANDOM"
+
+# clean up
+stop_shell
+rm -f $tmp_file
+
+# create a pseudo random file
+touch $tmp_file
+# run command
+echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+nmatch=`cat $OUTPUTFILE | grep -c "AUTHORS"`
+if [ $nmatch -eq 1 ]; then
+	size=`du README.md|cut -f1`
+	if [ $size -eq 0 ]; then
+		print_ko
+		echo "Author is empty"
+	else
+	   print_ok
+	fi
+else
+	   print_ko
+	   echo "Write the Author"
+fi
+
+# clean up
+stop_shell
+rm -f $tmp_file

@@ -67,6 +67,7 @@ do
 	   source "$dir$testname"
     done
 done
+#source "./00_simple_shell_0/readme"
 
 # Cleanup
 rm -f $OUTPUTFILE $LTRACEOUTPUTFILE $ERROROUTPUTFILE

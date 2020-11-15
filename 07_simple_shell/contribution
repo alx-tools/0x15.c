@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# makes sure you have contributed
+echo "Did you contribute?y or n"
+read x
+
+if [ "$x" = "y" ]; then
+	   print_ok
+else
+	   print_ko
+	   echo "You better do asap"
+fi
+
+# clean up
+stop_shell
+rm -f $tmp_filepath

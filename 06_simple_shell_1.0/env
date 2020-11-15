@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# makes sure the exit builting command is implemented
+
+command="env"
+tmpfile="xtmp$RANDOM"
+tmpfile1="ytmp$RANDOM"
+tmpfile2="ztmp$RANDOM"
+
+rm -f $tmpfile $tmpfile1 $tmpfile2
+touch $tmpfile $tmpfile1 $tmpfile2
+
+# send commands
+echo "$command" | $SHELL >& $OUTPUTFILE
+head -n$(wc -l $OUTPUTFILE|cut -d' ' -f1) $OUTPUTFILE|tail -n$(wc -l $OUTPUTFILE|cut -d' ' -f1) $OUTPUTFILE > $tmpfile
+env > $tmpfile1
+head -n$(wc -l $tmpfile1|cut -d' ' -f1) $tmpfile1|tail -n$(wc -l $tmpfile1|cut -d' ' -f1) $tmpfile1 > $tmpfile2
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+nmatch=`diff $tmpfile $tmpfile2| wc -l`
+if [ $nmatch -eq 0 ]; then
+	   print_ok
+else
+	   print_ko
+	   echo "Implement a built in env function"
+fi
+
+# clean up
+stop_shell
+rm -f $tmpfile $tmpfile1 $tmpfile2

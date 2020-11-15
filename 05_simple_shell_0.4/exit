@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# makes sure the exit builting command is implemented
+
+command="exit"
+
+
+# send commands
+echo "$command" | $SHELL >& $OUTPUTFILE
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+nmatch=`cat "$OUTPUTFILE" | grep -c ":\|not\ found"`
+if [ $nmatch -eq 0 ]; then
+	   print_ok
+else
+	   print_ko
+	   echo "Implement a built in exit function"
+fi
+
+# clean up
+stop_shell
+rm -f $tmp_filepath
