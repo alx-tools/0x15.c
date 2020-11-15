@@ -18,10 +18,11 @@ $SLEEP $SLEEPSECONDS
 
 # check the result
 nmatch=`cat $LTRACEOUTPUTFILE | grep getline | wc -l`
-if [ $nmatch -eq 1 ]; then
-    print_ko
-else
+if [ $nmatch -eq 0 ]; then
     print_ok
+else
+    print_ko
+    echo "Don't use getline"
 fi
 
 # clean up
