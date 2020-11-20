@@ -3,7 +3,7 @@
 # run ls with arguments
 
 tmp_file=".checker_tmp_file_$RANDOM"
-command="/bin/ls -l -a/"
+command="/bin/ls -l -a"
 
 # clean up
 stop_shell
