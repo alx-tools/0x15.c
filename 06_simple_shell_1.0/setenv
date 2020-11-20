@@ -2,7 +2,7 @@
 #
 # makes sure the exit builting command is implemented
 
-command="unset"
+command="set"
 
 
 # send commands
@@ -12,10 +12,10 @@ echo "$command" | $SHELL >& $OUTPUTFILE
 $SLEEP $SLEEPSECONDS
 
 # check the result
-nmatch=`cat $OUTPUTFILE|grep -c "no"`
+nmatch=`cat $OUTPUTFILE|grep -c "no"` #we don't take no for an anwer
 if [ $nmatch -ge 1 ]; then
 	   print_ko
-	   echo "Implement a built in unset function"
+	   echo "Implement a built in set function"
 else
 	   print_ok
 fi

@@ -1,4 +1,5 @@
-# run ls
+#!/bin/bash
+
 command="ls
 
 
