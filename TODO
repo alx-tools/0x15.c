@@ -1,0 +1,5 @@
+Fix the README to be more informative and instructive
+Comment the checker scripts
+Review and approve all the checkers
+Add edge cases to many checkers (Adress issues that hasnt been adressed)
+Finish protoypes (add a functioning script)
