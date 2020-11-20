@@ -2,7 +2,8 @@
 #
 # test simple command /bin/ls
 
-command="\n"
+command="
+"
 
 # run command
 echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
@@ -11,11 +12,12 @@ echo "$command" | $SHELL > $OUTPUTFILE 2> /dev/null &
 $SLEEP $SLEEPSECONDS
 
 # check the result
-nmatch=`cat $OUTPUTFILE | grep -c "$tmp_file"`
-if [ $nmatch -eq 1 ]; then
-	   print_ok
-else
+nmatch=`cat $OUTPUTFILE | grep -c "fault\|:\|seg:\|not"`
+if [ $nmatch -ge 1 ]; then
 	   print_ko
+	   echo "Handle new line inputs";
+else
+	   print_ok
 fi
 
 # clean up
