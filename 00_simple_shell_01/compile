@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# test the if all the files execute well
+
+gcc -Wall -Werror -Wextra -pedantic *.c -o shell >& x
+
+
+# wait a little bit
+$SLEEP $SLEEPSECONDS
+
+# check the result
+nmatch=`cat x | wc -l`
+if [ $nmatch -eq 0 ]; then
+	   print_ok
+else
+	   print_ko
+	   echo "Compilation erro, make sure this doesnt give any error"
+fi
+
+# clean up
+stop_shell
+rm -f $tmp_file
