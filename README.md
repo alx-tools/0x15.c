@@ -13,5 +13,5 @@ Open the file `config` and update the variable `SHELL` with your shell.
 
 Usage `./check_simple_shell.bash`
 
-##DISCLAIMER
-This chekers could be tricked by empty functions, so dont take this checkers as a full prove, but rather a reminder of what you have done and what you haven't.
+## DISCLAIMER
+This chekers could be tricked by empty functions, so dont take this checkers as a full proof, but rather a reminder of what you have done and what you haven't.
