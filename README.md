@@ -1,14 +1,19 @@
 # Simple Shell, Checks
 
-There will be no checks released before the deadline. We **strongly** encourage the whole class to work together and create a suite of checks covering both regular tests and edged cases for each task.
+This is a cohort-14 wide test suite for the shell environment regarding the Holberton Foundations curriculum.
 
-Here is an example on how to check your shell.
-Fork this repo and add more checks to help you and the rest of the class build the best simple shell possible.
+## Submissions
+If submitting, please do so from a separate branch after pulling fromm main. Your branch will be used to identify your team. Any queries will be more easily addressed in this manner.
+Please submit any commits with a minimalist description that is easily understood by a stranger.
+Submissions will be discussed in the meetings in Slack at 1pm 4/7/21 and then daily.
 
-## Configuration
+#### Here is an example on how to check your shell:
+Fork this repo. Run the following procedure.
 
-Open the file `config` and update the variable `SHELL` with your shell.
+#### Configuration
+Open the file config and update the variable SHELL with your shell.
 
-## Run
+#### Run
+Usage: ./check_simple_shell.bash
 
-Usage `./check_simple_shell.bash`
+### 4/5/21
