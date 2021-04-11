@@ -1,4 +1,4 @@
-# Configuration file
+B# Configuration file
 
 TESTDIR="."
 R=$RANDOM

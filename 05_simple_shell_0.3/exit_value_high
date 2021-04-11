@@ -1,8 +1,9 @@
 #!/bin/bash
 #
-# check that the PATH is checked in the right order
+# check that exit prints an error when called with a value over INT_MAX
+# check that it also has no output
 
-command="ls"
+command="exit 2147483648"
 tmp_file="checker_tmp_file_$RANDOM"
 
 # clean up
@@ -13,7 +14,7 @@ rm -f $tmp_file
 touch $tmp_file
 # empty PATH
 OLDPATH="$PATH"
-PATH=":$PATH"
+PATH=""
 # send commands
 $ECHO "$command" | $SHELL > $OUTPUTFILE 2> $ERROROUTPUTFILE &
 
@@ -24,10 +25,13 @@ PATH="$OLDPATH"
 $SLEEP $SLEEPSECONDS
 
 # check the result
-res=`$CAT "$OUTPUTFILE"`
-
-if [ "$res" == "cisfun" ]; then
-    print_ok
+nmatch=`$CAT $OUTPUTFILE | $GREP -c "$tmp_file"`
+if [ $nmatch -eq 0 ]; then
+    if [ `$CAT $ERROROUTPUTFILE | wc -c` -ge 5 ]; then
+	   print_ok
+    else
+	   print_ko
+    fi
 else
     print_ko
 fi
