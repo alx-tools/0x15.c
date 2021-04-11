@@ -7,6 +7,13 @@
 
 int _puts(char *str);
 
+/**
+ * main - runs a command against /bin/sh and ./hsh to compare output
+ * @argc: number of args (must be >= 2)
+ * @argv: array of arg values (concat'ed argv[1]-argv[n] to command to execute)
+ *
+ * Return: 0 for success
+*/
 int main(int argc, char **argv)
 {
 	int i;
