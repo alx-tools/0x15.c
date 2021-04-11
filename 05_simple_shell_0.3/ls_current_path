@@ -25,7 +25,6 @@ $SLEEP $SLEEPSECONDS
 
 # check the result
 res=`$CAT "$OUTPUTFILE"`
-
 if [ "$res" == "cisfun" ]; then
     print_ok
 else
