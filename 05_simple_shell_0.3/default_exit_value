@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# check that exit causes the program to return 0 without arguments
+
+command="exit"
+tmp_file="checker_tmp_file_$RANDOM"
+
+# clean up
+stop_shell
+rm -f $tmp_file
+
+# create a pseudo random file
+touch $tmp_file
+# send commands
+$ECHO "$command" | $SHELL 2> /dev/null
+$ECHO "$?" > $OUTPUTFILE
+
+# wait a little
+$SLEEP $SLEEPSECONDS
+
+# check the result
+res=`$CAT "$OUTPUTFILE"`
+
+if [ "$res" == "0" ]; then
+    print_ok
+else
+    print_ko
+fi
+
+# clean up
+stop_shell
+$RM -f $tmp_file
